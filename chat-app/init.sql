@@ -1,0 +1,25 @@
+
+CREATE DATABASE IF NOT EXISTS chat_app;
+USE chat_app;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(100),
+    last_active TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE chat_rooms (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_name VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    room_id INT,
+    to_user_id INT DEFAULT NULL,
+    message TEXT,
+    file_path VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
